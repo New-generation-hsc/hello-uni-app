@@ -1,52 +1,171 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+	<view class="container">
+		<view class="content">
+			<!-- 照片展示区域 -->
+			<view class="photo-container">
+				<image :src="currentPhoto" class="photo" mode="aspectFill"></image>
+				
+				<!-- 收藏按钮 -->
+				<view 
+					class="favorite-btn" 
+				    :class="{'hover-effect': isHovered}" 
+				    @touchstart="toggleHover(true)"
+				    @touchend="toggleHover(false)"
+				    @click="toggleFavorite"
+				>
+					<image :src="isFavorite ? '/static/heart-filled.png' : '/static/heart-outlined.png'" class="heart-icon"></image>
+				</view>	
+			</view>	
 		</view>
+		
+		<!-- 换一换按钮 -->
+		<button class="change-btn" :disabled="remainCount <= 0" @click="changePhoto">换一个</button>
+		
+		<!-- 剩余次数提示 -->
+		<text class="hint-text">提示：当前剩余{{ remainCount }}次切换机会</text>
 	</view>
 </template>
 
 <script>
+	const photoList = [
+		"/static/girl-pose-01.png",
+		"/static/girl-pose-02.png",
+		"/static/girl-pose-03.png",
+	]
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				currentPhoto: "/static/girl-pose-01.png",
+				isFavorite: false,
+				isHovered: false,
+				remainCount: 10
 			}
 		},
 		onLoad() {
 
 		},
 		methods: {
-
+			changePhoto() {
+				if(this.remainCount <= 0) return;
+				const randomIndex = Math.floor(Math.random() * photoList.length);
+				this.currentPhoto = photoList[randomIndex];
+				this.isFavorite = false;
+				this.remainCount--;
+			},
+			
+			toggleFavorite() {
+				this.isFavorite = !this.isFavorite;
+			},
+			
+			toggleHover(state) {
+				this.isHovered = state;
+			} 
 		}
 	}
 </script>
 
 <style>
+	.container {
+	  display: flex;
+	  flex-direction: column;
+	  position: relative;
+	}
+	
 	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+	  flex: 1;
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  padding: 40rpx;
 	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
+	
+	/* 照片容器 */
+	.photo-container {
+	  position: relative;
+	  width: 450rpx;
+	  height: 750rpx;
+	  border-radius: 24rpx;
+	  overflow: hidden;
+	  box-shadow: 0 8rpx 30rpx rgba(0,0,0,0.1);
+	  background: #fff;
 	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
+	
+	.photo {
+	  width: 100%;
+	  height: 100%;
 	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	
+	/* 收藏按钮 */
+	.favorite-btn {
+	  position: absolute;
+	  right: 20rpx;
+	  bottom: 20rpx;
+	  width: 70rpx;
+	  height: 70rpx;
+	  background: transparent;
+	  border-radius: 50%;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  transition: all 0.3s ease; /* 添加过渡效果 */
+	}
+	
+	/* 悬停/点击效果 */
+	.favorite-btn.hover-effect,
+	.favorite-btn:active {
+	  background: rgba(255,255,255,0.9); /* 背景变亮 */
+	  box-shadow: 0 0 1rpx rgba(0,0,0,0.2); /* 添加阴影效果 */
+	  transform: scale(1.05); /* 轻微放大 */
+	}
+	
+	/* 更现代的波纹效果（可选） */
+	.favorite-btn::after {
+	  content: '';
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  border-radius: 50%;
+	  background: rgba(0,0,0,0.1);
+	  opacity: 0;
+	  transform: scale(0.9);
+	  transition: all 0.4s ease;
+	  pointer-events: none;
+	}
+	
+	.favorite-btn.hover-effect::after,
+	.favorite-btn:active::after {
+	  opacity: 1;
+	  transform: scale(1.2);
+	}
+	
+	.heart-icon {
+	  width: 50rpx;
+	  height: 50rpx;
+	}
+	
+	/* 换一换按钮 */
+	.change-btn {
+	  width: 250rpx;
+	  height: 90rpx;
+	  background: #6EBF7A;
+	  color: white;
+	  font-size: 36rpx;
+	  border-radius: 60rpx;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  margin-top: 30rpx;
+	}
+	
+	/* 提示文本 */
+	.hint-text {
+	  font-size: 28rpx;
+	  color: #999;
+	  margin-top: 30rpx;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
 	}
 </style>

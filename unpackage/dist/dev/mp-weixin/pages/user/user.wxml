@@ -1,1 +1,1 @@
-<view></view>
+<view class="profile-container"><view class="profile"><image src="{{a}}" class="avatar"></image><text class="username">{{b}}</text></view><view class="menu-list"><view wx:for="{{c}}" wx:for-item="item" wx:key="c" class="menu-item" bindtap="{{item.d}}"><view class="icon-container"><image src="{{item.a}}" class="icon"></image></view><text class="label">{{item.b}}</text><image src="{{d}}" class="arrow-icon"></image></view></view></view>

@@ -1,1 +1,1 @@
-<view></view>
+<view class="category-container"><view class="header"><text class="title">热门图鉴</text><view class="filter-btn"><image src="{{a}}" class="filter-icon"></image><text class="filter-text">筛选</text></view></view><view class="gallery"><view wx:for="{{b}}" wx:for-item="item" wx:key="d" class="photo-card" bindtap="{{item.e}}"><image src="{{item.a}}" class="photo" mode="aspectFill"></image><view class="photo-info"><text class="like-count">{{item.b}}</text><image src="{{item.c}}" class="like-icon"></image></view></view></view></view>

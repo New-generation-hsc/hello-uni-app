@@ -11,6 +11,7 @@
         "minified": false,
         "newFeature": true,
         "bigPackageSizeSupport": true,
+        "packNpmRelationList": [],
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
@@ -19,7 +20,7 @@
     },
     "compileType": "miniprogram",
     "libVersion": "3.8.10",
-    "appid": "touristappid",
+    "appid": "wx1c7b352aae2ec13a",
     "projectname": "hello-uni-app",
     "condition": {},
     "editorSetting": {

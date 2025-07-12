@@ -6,6 +6,22 @@
 			<text class="username">{{ userInfo.username }}</text>
 		</view>
 		
+		<!-- 数据统计区域 -->
+		<view class="stats">
+		  <view class="stat-item">
+			<text class="stat-value">{{ userStats.likes }}</text>
+			<text class="stat-label">喜欢姿势</text>
+		  </view>
+		  <view class="stat-item">
+			<text class="stat-value">{{ userStats.checkIns }}</text>
+			<text class="stat-label">打卡姿势</text>
+		  </view>
+		  <view class="stat-item">
+			<text class="stat-value">{{ userStats.points }}</text>
+			<text class="stat-label">任务积分</text>
+		  </view>
+		</view>
+		
 		<!-- 功能菜单 -->
 		<view class="menu-list">
 			<view class="menu-item" v-for="(item,index) in menuItems" :key="index" @click="navigateTo(item.path)">
@@ -26,17 +42,25 @@
 	};
 	
 	const menuItems = [
-	  { name: '我的喜欢', icon: '/static/heart.png', path: '/pages/index/index' },
+	  { name: '我的喜欢', icon: '/static/heart.png', path: '/pages/favorites/favorites' },
 	  { name: '我的打卡', icon: '/static/camera.png', path: '/pages/index/index' },
 	  { name: '任务中心', icon: '/static/menu.png', path: '/pages/index/index' },
 	  { name: '意见反馈', icon: '/static/pencil.png', path: '/pages/index/index' }
 	];
 	
+	// 用户统计数据
+	const userStats = {
+	  points: "2,450",
+	  likes: "128",
+	  checkIns: "45"
+	};
+	
 	export default {
 		data() {
 			return {
 				userInfo: userInfo,
-				menuItems: menuItems
+				menuItems: menuItems,
+				userStats: userStats
 			}
 		},
 		methods: {
@@ -118,5 +142,34 @@
   width: 35rpx;
   height: 35rpx;
   opacity: 0.5; /* 半透明效果 */
+}
+
+/* 数据统计区域 */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 30rpx 30rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  padding: 40rpx 30rpx;
+}
+
+.stat-value {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.stat-label {
+  font-size: 30rpx;
+  color: #666;
 }
 </style>

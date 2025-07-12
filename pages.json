@@ -33,6 +33,13 @@
 			{
 				"navigationBarTitleText" : ""
 			}
+		},
+		{
+			"path" : "pages/favorites/favorites",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我喜欢的姿势"
+			}
 		}
 	],
 	"tabBar": {

@@ -30,20 +30,26 @@ const _sfc_main = {
     },
     toggleHover(state) {
       this.isHovered = state;
+    },
+    viewPhotoDetail(photo) {
+      common_vendor.index.navigateTo({
+        url: "/pages/detail/detail"
+      });
     }
   }
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: $data.currentPhoto,
-    b: $data.isFavorite ? "/static/heart-filled.png" : "/static/heart-outlined.png",
-    c: $data.isHovered ? 1 : "",
-    d: common_vendor.o(($event) => $options.toggleHover(true)),
-    e: common_vendor.o(($event) => $options.toggleHover(false)),
-    f: common_vendor.o((...args) => $options.toggleFavorite && $options.toggleFavorite(...args)),
-    g: $data.remainCount <= 0,
-    h: common_vendor.o((...args) => $options.changePhoto && $options.changePhoto(...args)),
-    i: common_vendor.t($data.remainCount)
+    b: common_vendor.o((...args) => $options.viewPhotoDetail && $options.viewPhotoDetail(...args)),
+    c: $data.isFavorite ? "/static/heart-filled.png" : "/static/heart-outlined.png",
+    d: $data.isHovered ? 1 : "",
+    e: common_vendor.o(($event) => $options.toggleHover(true)),
+    f: common_vendor.o(($event) => $options.toggleHover(false)),
+    g: common_vendor.o((...args) => $options.toggleFavorite && $options.toggleFavorite(...args)),
+    h: $data.remainCount <= 0,
+    i: common_vendor.o((...args) => $options.changePhoto && $options.changePhoto(...args)),
+    j: common_vendor.t($data.remainCount)
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);

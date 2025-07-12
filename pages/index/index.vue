@@ -3,7 +3,7 @@
 		<view class="content">
 			<!-- 照片展示区域 -->
 			<view class="photo-container">
-				<image :src="currentPhoto" class="photo" mode="aspectFill"></image>
+				<image :src="currentPhoto" class="photo" mode="aspectFill" @click="viewPhotoDetail"></image>
 				
 				<!-- 收藏按钮 -->
 				<view 
@@ -59,7 +59,13 @@
 			
 			toggleHover(state) {
 				this.isHovered = state;
-			} 
+			} ,
+			
+			viewPhotoDetail(photo) {
+				uni.navigateTo({
+					url: '/pages/detail/detail'
+				});
+			}
 		}
 	}
 </script>

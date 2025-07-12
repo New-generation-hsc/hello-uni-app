@@ -2,7 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/user/user",
-    "pages/category/category"
+    "pages/category/category",
+    "pages/detail/detail",
+    "pages/camera/camera"
   ],
   "window": {
     "navigationBarTextStyle": "black",

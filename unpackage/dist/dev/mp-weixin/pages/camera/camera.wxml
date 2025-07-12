@@ -1,0 +1,1 @@
+<view class="camera-container"><camera class="camera-preview" device-position="front"></camera><image class="pose-reference" src="{{a}}"/><view class="capture-btn" bindtap="{{b}}"><view class="capture-icon"></view></view></view>

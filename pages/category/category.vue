@@ -115,7 +115,7 @@
 		methods: {
 			viewPhotoDetail(photo) {
 				uni.navigateTo({
-					url: 'pages/photo-detail?id=${photo.id}'
+					url: '/pages/detail/detail'
 				});
 			}
 		}
@@ -127,7 +127,6 @@
 .category-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
   background-color: #f5f5f5; /* 浅灰色背景 */
   position: relative;
 }

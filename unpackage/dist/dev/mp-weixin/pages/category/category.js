@@ -92,7 +92,7 @@ const _sfc_main = {
   methods: {
     viewPhotoDetail(photo) {
       common_vendor.index.navigateTo({
-        url: "pages/photo-detail?id=${photo.id}"
+        url: "/pages/detail/detail"
       });
     }
   }

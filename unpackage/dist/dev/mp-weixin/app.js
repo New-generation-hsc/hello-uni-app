@@ -9,6 +9,7 @@ if (!Math) {
   "./pages/camera/camera.js";
   "./pages/favorites/favorites.js";
   "./pages/checkin/checkin.js";
+  "./pages/tasks/tasks.js";
 }
 const _sfc_main = {
   onLaunch: function() {

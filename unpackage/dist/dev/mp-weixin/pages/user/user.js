@@ -10,7 +10,7 @@ const userInfo = {
 const menuItems = [
   { name: "我的喜欢", icon: "/static/heart.png", path: "/pages/favorites/favorites" },
   { name: "我的打卡", icon: "/static/camera.png", path: "/pages/checkin/checkin" },
-  { name: "任务中心", icon: "/static/menu.png", path: "/pages/index/index" }
+  { name: "任务中心", icon: "/static/menu.png", path: "/pages/tasks/tasks" }
 ];
 const userStats = {
   points: "2,450",

@@ -4,7 +4,9 @@
     "pages/user/user",
     "pages/category/category",
     "pages/detail/detail",
-    "pages/camera/camera"
+    "pages/camera/camera",
+    "pages/favorites/favorites",
+    "pages/checkin/checkin"
   ],
   "window": {
     "navigationBarTextStyle": "black",

@@ -31,6 +31,14 @@
 				<text class="label">{{ item.name }}</text>
 				<image src="/static/arrow-right.png" class="arrow-icon"></image>
 			</view>
+			<view class="feedback-container">
+				<view class="icon-container">
+					<image src="/static/pencil.png" class="icon"></image>
+				</view>
+				<button open-type="feedback" class="feedback-btn">意见反馈</button>
+				<image src="/static/arrow-right.png" class="arrow-icon"></image>
+			</view>
+			
 		</view>
 	</view>
 </template>
@@ -43,9 +51,8 @@
 	
 	const menuItems = [
 	  { name: '我的喜欢', icon: '/static/heart.png', path: '/pages/favorites/favorites' },
-	  { name: '我的打卡', icon: '/static/camera.png', path: '/pages/index/index' },
-	  { name: '任务中心', icon: '/static/menu.png', path: '/pages/index/index' },
-	  { name: '意见反馈', icon: '/static/pencil.png', path: '/pages/index/index' }
+	  { name: '我的打卡', icon: '/static/camera.png', path: '/pages/checkin/checkin' },
+	  { name: '任务中心', icon: '/static/menu.png', path: '/pages/index/index' }
 	];
 	
 	// 用户统计数据
@@ -65,10 +72,19 @@
 		},
 		methods: {
 			navigateTo(path) {
-				console.log(path);
-				uni.navigateTo({
-					url: path
-				});
+				if(path == '/pages/feedback/feedback') {
+					// #ifdef MP-WEIXIN
+					console.log("weixin-mp platform");
+					wx.openFeedBackButton({
+						type: 'default'
+					});
+					// #endif
+				} else {
+					console.log("current jump path: ", path);
+					uni.navigateTo({
+						url: path
+					});
+				}
 			}
 		}
 	}
@@ -172,4 +188,45 @@
   font-size: 30rpx;
   color: #666;
 }
+
+.feedback-container {
+	display: flex;
+	align-items: center;
+	padding: 30rpx 0 30rpx 15rpx;
+	border-bottom: 2rpx solid #f5f5f5;
+}
+
+.feedback-btn {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  display: inline-flex;
+  vertical-align: middle;
+  line-height: normal;
+  font-size: 34rpx;
+  color: #333333;
+  flex: 1;
+  margin-left: 30rpx;
+}
+
+.feedback-btn::after {
+	border: none !important;
+}
+
+.feedback-btn.hover-effect {
+    transition: all 0.2s ease;
+}
+  
+.feedback-btn:hover {
+	opacity: 0.9;
+	transform: translateY(-1px);
+	background-color: transparent !important;
+}
+
+.feedback-btn:active {
+	transform: translateY(1px);
+	background-color: transparent !important;
+}
+  
 </style>

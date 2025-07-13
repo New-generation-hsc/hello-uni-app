@@ -40,6 +40,13 @@
 			{
 				"navigationBarTitleText" : "我喜欢的姿势"
 			}
+		},
+		{
+			"path" : "pages/checkin/checkin",
+			"style" : 
+			{
+				"navigationBarTitleText" : "打卡记录"
+			}
 		}
 	],
 	"tabBar": {

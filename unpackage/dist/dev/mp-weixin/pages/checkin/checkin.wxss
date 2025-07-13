@@ -1,0 +1,204 @@
+
+	
+/* 整体布局 */
+.checkin-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8; /* 浅灰色背景 */
+}
+
+/* 打卡记录列表 */
+.record-list {
+  margin-bottom: 20rpx; /* 避免被底部导航遮挡 */
+  padding: 0 30rpx;
+}
+.record-item {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-top: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+.record-item:active {
+    background-color: #f9f9f9;
+	transform: scale(0.97);
+}
+.record-date {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  display: block;
+}
+.record-content {
+  display: flex;
+  align-items: center;
+}
+.pose-image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  margin-right: 30rpx;
+}
+.record-details {
+  flex: 1;
+}
+.pose-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+.record-time {
+  font-size: 32rpx;
+  color: #666;
+  display: block;
+  margin-bottom: 10rpx;
+}
+.streak-days {
+  font-size: 28rpx;
+  color: #4a90e2;
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 20rpx;
+  padding: 6rpx 15rpx;
+  display: inline-block;
+}
+
+/* 空状态提示 */
+.empty-tips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 30rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-top: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+.empty-text {
+  font-size: 34rpx;
+  color: #999;
+  margin-bottom: 40rpx;
+}
+.start-btn {
+  background-color: #07c160;
+  color: #fff;
+  width: 70%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+}
+
+/* 打卡信息卡片 */
+.checkin-card {
+  background-color: #f0e6ff; /* 淡紫色背景 */
+  border-radius: 20rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  margin-top: 30rpx;
+}
+.checkin-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+.checkin-label {
+  font-size: 28rpx;
+  color: #333;
+}
+.checkin-days {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #8e44ad; /* 紫色 */
+}
+
+/* 打卡进度条 */
+.progress-bar {
+  display: flex;
+  justify-content: space-between;
+}
+.progress-item {
+  width: 70rpx;
+  height: 30rpx;
+  border-radius: 8rpx;
+  background-color: #e0e0e0; /* 灰色未打卡 */
+}
+.progress-item.completed {
+    background-color: #8e44ad; /* 紫色已打卡 */
+}
+
+/* 日历区域 */
+.calendar-container {
+	margin: 30rpx 0;
+}
+.section-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 25rpx;
+  display: block;
+}
+.calendar {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+.weekdays {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+.weekday {
+  font-size: 32rpx;
+  color: #666;
+  width: 14.28%; /* 100% / 7 */
+  text-align: center;
+}
+.days-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.day-cell {
+  width: 14.28%; /* 100% / 7 */
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.day-number {
+  font-size: 32rpx;
+  color: #333;
+}
+.day-cell:not(.current-month) .day-number {
+  color: #ccc;
+}
+.day-cell.checked .day-number {
+  color: #8e44ad;
+  font-weight: bold;
+}
+.day-cell.checked::after {
+  content: '';
+  position: absolute;
+  bottom: 5rpx;
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #8e44ad;
+  border-radius: 50%;
+}
+.day-cell.today .day-number {
+  color: #fff;
+  background-color: #8e44ad;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

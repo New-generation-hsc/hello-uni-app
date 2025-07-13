@@ -5,7 +5,7 @@
 		<text class="title">热门图鉴</text>
 			<view class="filter-btn">
 				<image src="/static/filter.png" class="filter-icon"></image>
-				<text class="filter-text">筛选</text>
+				<text class="filter-text" @click="openFilter">筛选</text>
 			</view>
 		</view>
 		
@@ -19,10 +19,19 @@
 				</view>
 			</view>
 		</view>
+		
+		<!-- 使用筛选组件 -->
+		  <FilterModal
+			:initialPeople="filter.people"
+			:initialScene="filter.scene"
+			@filter-applied="handleFilterApplied"
+		  />
 	</view>
 </template>
 
 <script>
+	import FilterModal from "@/components/filter-modal.vue";
+	
 	const photoList = [
 	  { 
 	    id: 1, 
@@ -107,9 +116,17 @@
 	];
 	
 	export default {
+		components: {
+		    FilterModal
+		},
 		data() {
 			return {
-				photoList : photoList
+				photoList : photoList,
+				// 筛选条件
+				  filter: {
+					people: "single",
+					scene: "daily"
+				  }
 			}
 		},
 		methods: {
@@ -117,6 +134,23 @@
 				uni.navigateTo({
 					url: '/pages/detail/detail'
 				});
+			},
+			
+			// 处理筛选结果
+			handleFilterApplied(filter) {
+			  this.filter = filter;
+			  // 在这里执行实际的筛选逻辑
+			  console.log("应用筛选条件:", filter);
+			  
+			  uni.showToast({
+				title: "筛选条件已应用",
+				icon: "success"
+			  });
+			},
+			
+			// 直接打开筛选弹窗（可选）
+			openFilter() {
+			  this.$refs.filterModal.openModal();
 			}
 		}
 	}

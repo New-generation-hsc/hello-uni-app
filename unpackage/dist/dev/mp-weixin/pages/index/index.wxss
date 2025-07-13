@@ -1,126 +1,181 @@
-
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
 .container {
-	  display: flex;
-	  flex-direction: column;
-	  position: relative;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
-	
-	/* 页面标题 */
+
+/* 页面标题 */
 .header {
-	  padding: 25rpx 30rpx;
-	  display: flex;
-	  justify-content: space-between;
-	  align-items: center;
-	  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  padding: 25rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
 }
 .title {
-	  font-size: 40rpx;
-	  font-weight: 600;
-	  color: #333333;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333333;
 }
 .content {
-	  flex: 1;
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	  padding: 40rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx;
 }
-	
-	/* 照片容器 */
+
+/* 照片容器 */
 .photo-container {
-	  position: relative;
-	  width: 500rpx;
-	  height: 750rpx;
-	  border-radius: 24rpx;
-	  overflow: hidden;
-	  box-shadow: 0 8rpx 30rpx rgba(0,0,0,0.1);
-	  background: #fff;
+  position: relative;
+  width: 500rpx;
+  height: 750rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.1);
+  background: #fff;
 }
 .photo {
-	  width: 100%;
-	  height: 100%;
+  width: 100%;
+  height: 100%;
 }
-	
-	/* 收藏按钮 */
+
+/* 收藏按钮 */
 .favorite-btn {
-	  position: absolute;
-	  right: 20rpx;
-	  bottom: 20rpx;
-	  width: 70rpx;
-	  height: 70rpx;
-	  background: transparent;
-	  border-radius: 50%;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  transition: all 0.3s ease; /* 添加过渡效果 */
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background: transparent;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  /* 添加过渡效果 */
 }
-	
-	/* 悬停/点击效果 */
+
+/* 悬停/点击效果 */
 .favorite-btn.hover-effect,
-	.favorite-btn:active {
-	  background: rgba(255,255,255,0.9); /* 背景变亮 */
-	  box-shadow: 0 0 1rpx rgba(0,0,0,0.2); /* 添加阴影效果 */
-	  transform: scale(1.05); /* 轻微放大 */
+.favorite-btn:active {
+  background: rgba(255, 255, 255, 0.9);
+  /* 背景变亮 */
+  box-shadow: 0 0 1rpx rgba(0, 0, 0, 0.2);
+  /* 添加阴影效果 */
+  transform: scale(1.05);
+  /* 轻微放大 */
 }
-	
-	/* 更现代的波纹效果（可选） */
+
+/* 更现代的波纹效果（可选） */
 .favorite-btn::after {
-	  content: '';
-	  position: absolute;
-	  top: 0;
-	  left: 0;
-	  width: 100%;
-	  height: 100%;
-	  border-radius: 50%;
-	  background: rgba(0,0,0,0.1);
-	  opacity: 0;
-	  transform: scale(0.9);
-	  transition: all 0.4s ease;
-	  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.4s ease;
+  pointer-events: none;
 }
 .favorite-btn.hover-effect::after,
-	.favorite-btn:active::after {
-	  opacity: 1;
-	  transform: scale(1.2);
+.favorite-btn:active::after {
+  opacity: 1;
+  transform: scale(1.2);
 }
 .heart-icon {
-	  width: 50rpx;
-	  height: 50rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .change-container {
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-	
-	/* 换一换按钮 */
+
+/* 换一换按钮 */
 .change-btn {
-	  width: 300rpx;
-	  height: 90rpx;
-	  background: #6EBF7A;
-	  color: white;
-	  font-size: 36rpx;
-	  border-radius: 60rpx;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  margin-top: 30rpx;
+  width: 300rpx;
+  height: 90rpx;
+  background: #6EBF7A;
+  color: white;
+  font-size: 36rpx;
+  border-radius: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
 }
 .hint-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 20rpx;
-		margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20rpx;
+  margin-top: 30rpx;
 }
 .hint-icon {
-		width: 30rpx;
-		height: 30rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
-	
-	/* 提示文本 */
+
+/* 提示文本 */
 .hint-text {
-	  font-size: 28rpx;
-	  color: #999;
+  font-size: 28rpx;
+  color: #999;
+}
+.swipe-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 0;
+  margin-top: 30rpx;
+}
+.swipe-hint .arrow-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-bottom: 10rpx;
+  animation: floatUp 2s infinite ease-in-out;
+}
+.swipe-hint .hint-text {
+  font-size: 28rpx;
+  color: #999;
+}
+@keyframes floatUp {
+0%, 100% {
+    transform: translateY(0);
+    opacity: 0.8;
+}
+50% {
+    transform: translateY(-10rpx);
+    opacity: 1;
+}
 }

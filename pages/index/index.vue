@@ -28,6 +28,12 @@
 			<image src="/static/ringing.png" mode="aspectFill" class="hint-icon"></image>
 			<text class="hint-text">提示：当前剩余{{ remainCount }}次切换机会</text>
 		</view>
+		
+		 <!-- 在姿势卡片后面添加 -->
+		  <view class="swipe-hint" @click="goToHistory">
+		    <image src="/static/arrow-up.png" class="arrow-icon" />
+		    <text class="hint-text">点击查看历史推荐姿势</text>
+		  </view>
 	</view>
 </template>
 
@@ -70,12 +76,22 @@
 				uni.navigateTo({
 					url: '/pages/detail/detail'
 				});
+			},
+			
+			goToHistory() {
+			  uni.navigateTo({
+				url: '/pages/history/history',
+				animationType: 'slide-in-bottom',
+				success: () => {
+				  uni.hideTabBar(); // 隐藏底部TabBar
+				}
+			  });
 			}
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.container {
 	  display: flex;
 	  flex-direction: column;
@@ -208,5 +224,30 @@
 	.hint-text {
 	  font-size: 28rpx;
 	  color: #999;
+	}
+	
+	.swipe-hint {
+	  display: flex;
+	  flex-direction: column;
+	  align-items: center;
+	  padding: 60rpx 0;
+	  margin-top: 30rpx;
+	  
+	  .arrow-icon {
+	    width: 30rpx;
+	    height: 30rpx;
+	    margin-bottom: 10rpx;
+	    animation: floatUp 2s infinite ease-in-out;
+	  }
+	  
+	  .hint-text {
+	    font-size: 28rpx;
+	    color: #999;
+	  }
+	}
+	
+	@keyframes floatUp {
+	  0%, 100% { transform: translateY(0); opacity: 0.8; }
+	  50% { transform: translateY(-10rpx); opacity: 1; }
 	}
 </style>

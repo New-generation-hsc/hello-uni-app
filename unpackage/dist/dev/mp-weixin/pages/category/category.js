@@ -1,6 +1,7 @@
 "use strict";
 const common_vendor = require("../../common/vendor.js");
 const common_assets = require("../../common/assets.js");
+const FilterModal = () => "../../components/filter-modal.js";
 const photoList = [
   {
     id: 1,
@@ -84,9 +85,17 @@ const photoList = [
   }
 ];
 const _sfc_main = {
+  components: {
+    FilterModal
+  },
   data() {
     return {
-      photoList
+      photoList,
+      // 筛选条件
+      filter: {
+        people: "single",
+        scene: "daily"
+      }
     };
   },
   methods: {
@@ -94,13 +103,31 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/pages/detail/detail"
       });
+    },
+    // 处理筛选结果
+    handleFilterApplied(filter) {
+      this.filter = filter;
+      common_vendor.index.__f__("log", "at pages/category/category.vue:143", "应用筛选条件:", filter);
+      common_vendor.index.showToast({
+        title: "筛选条件已应用",
+        icon: "success"
+      });
+    },
+    // 直接打开筛选弹窗（可选）
+    openFilter() {
+      this.$refs.filterModal.openModal();
     }
   }
 };
+if (!Array) {
+  const _component_FilterModal = common_vendor.resolveComponent("FilterModal");
+  _component_FilterModal();
+}
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return {
     a: common_assets._imports_0$2,
-    b: common_vendor.f($data.photoList, (item, index, i0) => {
+    b: common_vendor.o((...args) => $options.openFilter && $options.openFilter(...args)),
+    c: common_vendor.f($data.photoList, (item, index, i0) => {
       return {
         a: item.url,
         b: common_vendor.t(item.likes),
@@ -108,6 +135,11 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         d: index,
         e: common_vendor.o(($event) => $options.viewPhotoDetail(item), index)
       };
+    }),
+    d: common_vendor.o($options.handleFilterApplied),
+    e: common_vendor.p({
+      initialPeople: $data.filter.people,
+      initialScene: $data.filter.scene
     })
   };
 }

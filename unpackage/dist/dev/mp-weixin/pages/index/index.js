@@ -36,6 +36,15 @@ const _sfc_main = {
       common_vendor.index.navigateTo({
         url: "/pages/detail/detail"
       });
+    },
+    goToHistory() {
+      common_vendor.index.navigateTo({
+        url: "/pages/history/history",
+        animationType: "slide-in-bottom",
+        success: () => {
+          common_vendor.index.hideTabBar();
+        }
+      });
     }
   }
 };
@@ -51,7 +60,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     h: $data.remainCount <= 0,
     i: common_vendor.o((...args) => $options.changePhoto && $options.changePhoto(...args)),
     j: common_assets._imports_0,
-    k: common_vendor.t($data.remainCount)
+    k: common_vendor.t($data.remainCount),
+    l: common_assets._imports_1,
+    m: common_vendor.o((...args) => $options.goToHistory && $options.goToHistory(...args))
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);

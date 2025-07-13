@@ -56,9 +56,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         d: common_vendor.o(($event) => $options.navigateTo(item.path), index)
       };
     }),
-    g: common_assets._imports_0,
+    g: common_assets._imports_0$1,
     h: common_assets._imports_1,
-    i: common_assets._imports_0
+    i: common_assets._imports_0$1
   };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);

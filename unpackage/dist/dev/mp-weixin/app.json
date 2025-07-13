@@ -7,7 +7,8 @@
     "pages/camera/camera",
     "pages/favorites/favorites",
     "pages/checkin/checkin",
-    "pages/tasks/tasks"
+    "pages/tasks/tasks",
+    "pages/history/history"
   ],
   "window": {
     "navigationBarTextStyle": "black",

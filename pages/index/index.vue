@@ -19,10 +19,15 @@
 		</view>
 		
 		<!-- 换一换按钮 -->
-		<button class="change-btn" :disabled="remainCount <= 0" @click="changePhoto">换一个</button>
+		<view class="change-container">
+			<view class="change-btn" :disabled="remainCount <= 0" @click="changePhoto">换一个</view>
+		</view>
 		
 		<!-- 剩余次数提示 -->
-		<text class="hint-text">提示：当前剩余{{ remainCount }}次切换机会</text>
+		<view class="hint-container">
+			<image src="/static/ringing.png" mode="aspectFill" class="hint-icon"></image>
+			<text class="hint-text">提示：当前剩余{{ remainCount }}次切换机会</text>
+		</view>
 	</view>
 </template>
 
@@ -77,6 +82,21 @@
 	  position: relative;
 	}
 	
+	/* 页面标题 */
+	.header {
+	  padding: 25rpx 30rpx;
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+	}
+	
+	.title {
+	  font-size: 40rpx;
+	  font-weight: 600;
+	  color: #333333;
+	}
+	
 	.content {
 	  flex: 1;
 	  display: flex;
@@ -88,7 +108,7 @@
 	/* 照片容器 */
 	.photo-container {
 	  position: relative;
-	  width: 450rpx;
+	  width: 500rpx;
 	  height: 750rpx;
 	  border-radius: 24rpx;
 	  overflow: hidden;
@@ -151,9 +171,15 @@
 	  height: 50rpx;
 	}
 	
+	.change-container {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	}
+	
 	/* 换一换按钮 */
 	.change-btn {
-	  width: 250rpx;
+	  width: 300rpx;
 	  height: 90rpx;
 	  background: #6EBF7A;
 	  color: white;
@@ -165,13 +191,22 @@
 	  margin-top: 30rpx;
 	}
 	
+	.hint-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 20rpx;
+		margin-top: 30rpx;
+	}
+	
+	.hint-icon {
+		width: 30rpx;
+		height: 30rpx;
+	}
+	
 	/* 提示文本 */
 	.hint-text {
 	  font-size: 28rpx;
 	  color: #999;
-	  margin-top: 30rpx;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
 	}
 </style>

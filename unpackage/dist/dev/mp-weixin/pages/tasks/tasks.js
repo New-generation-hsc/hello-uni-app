@@ -136,7 +136,7 @@ const _sfc_main = {
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({
     a: common_vendor.t($data.point.currentPoint),
-    b: common_assets._imports_0$4,
+    b: common_assets._imports_0$5,
     c: common_vendor.t($data.point.nextPoint),
     d: $data.point.progressPercentage + "%",
     e: common_vendor.f($data.tabs, (tab, index, i0) => {

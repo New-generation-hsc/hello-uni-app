@@ -54,6 +54,13 @@
 			{
 				"navigationBarTitleText" : "任务中心"
 			}
+		},
+		{
+			"path" : "pages/history/history",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
 	],
 	"tabBar": {

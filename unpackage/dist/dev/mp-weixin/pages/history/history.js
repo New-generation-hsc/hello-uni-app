@@ -4,12 +4,7 @@ const common_assets = require("../../common/assets.js");
 const _sfc_main = {
   data() {
     return {
-      // 分类标签
-      categories: ["全部", "室内", "室外", "街拍", "日常"],
-      // 当前选中的分类
-      activeCategory: 0,
-      // 收藏的姿势数据
-      favoriteItems: [
+      historyPoses: [
         {
           id: 1,
           image: "/static/girl-pose-01.png",
@@ -41,42 +36,23 @@ const _sfc_main = {
       ]
     };
   },
-  methods: {
-    // 查看详情
-    viewDetail(item) {
-      common_vendor.index.navigateTo({
-        url: `/pages/detail/detail?id=${item.id}`
-      });
-    },
-    selectCategory(index) {
-      this.activeCategory = index;
-    }
-  }
+  methods: {}
 };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
-  return common_vendor.e({
-    a: common_vendor.f($data.categories, (item, index, i0) => {
-      return {
-        a: common_vendor.t(item),
-        b: index,
-        c: $data.activeCategory === index ? 1 : "",
-        d: common_vendor.o(($event) => $options.selectCategory(index), index)
-      };
-    }),
-    b: common_vendor.f($data.favoriteItems, (item, index, i0) => {
+  return {
+    a: common_vendor.f($data.historyPoses, (item, index, i0) => {
       return {
         a: item.image,
         b: item.title,
         c: common_vendor.t(item.title),
         d: common_vendor.t(item.likes),
         e: index,
-        f: common_vendor.o(($event) => $options.viewDetail(item), index)
+        f: common_vendor.o(($event) => _ctx.viewDetail(item), index)
       };
     }),
-    c: common_assets._imports_0$4,
-    d: $data.favoriteItems.length === 0
-  }, $data.favoriteItems.length === 0 ? {} : {});
+    b: common_assets._imports_0$4
+  };
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render]]);
 wx.createPage(MiniProgramPage);
-//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/favorites/favorites.js.map
+//# sourceMappingURL=../../../.sourcemap/mp-weixin/pages/history/history.js.map

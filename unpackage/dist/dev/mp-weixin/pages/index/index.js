@@ -12,7 +12,8 @@ const _sfc_main = {
       currentPhoto: "/static/girl-pose-01.png",
       isFavorite: false,
       isHovered: false,
-      remainCount: 10
+      remainCount: 10,
+      lastIndex: 0
     };
   },
   onLoad() {
@@ -22,7 +23,11 @@ const _sfc_main = {
       if (this.remainCount <= 0)
         return;
       const randomIndex = Math.floor(Math.random() * photoList.length);
+      if (randomIndex == this.lastIndex) {
+        randomIndex = (randomIndex + 1) % photoList.length;
+      }
       this.currentPhoto = photoList[randomIndex];
+      this.lastIndex = randomIndex;
       this.isFavorite = false;
       this.remainCount--;
     },

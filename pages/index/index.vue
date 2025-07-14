@@ -86,10 +86,7 @@
 			goToHistory() {
 			  uni.navigateTo({
 				url: '/pages/history/history',
-				animationType: 'slide-in-bottom',
-				success: () => {
-				  uni.hideTabBar(); // 隐藏底部TabBar
-				}
+				animationType: 'slide-in-bottom'
 			  });
 			}
 		}

@@ -102,6 +102,7 @@
   background-color: #ffffff;
   min-height: 100vh;
   position: relative;
+  padding-bottom: 60rpx;
 }
 
 /* 轮播图容器 (新增) */

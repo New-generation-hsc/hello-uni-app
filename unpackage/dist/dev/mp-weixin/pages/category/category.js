@@ -107,7 +107,7 @@ const _sfc_main = {
     // 处理筛选结果
     handleFilterApplied(filter) {
       this.filter = filter;
-      common_vendor.index.__f__("log", "at pages/category/category.vue:143", "应用筛选条件:", filter);
+      common_vendor.index.__f__("log", "at pages/category/category.vue:144", "应用筛选条件:", filter);
       common_vendor.index.showToast({
         title: "筛选条件已应用",
         icon: "success"
@@ -136,8 +136,9 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         e: common_vendor.o(($event) => $options.viewPhotoDetail(item), index)
       };
     }),
-    d: common_vendor.o($options.handleFilterApplied),
-    e: common_vendor.p({
+    d: common_vendor.sr("filterModal", "684b07d6-0"),
+    e: common_vendor.o($options.handleFilterApplied),
+    f: common_vendor.p({
       initialPeople: $data.filter.people,
       initialScene: $data.filter.scene
     })

@@ -22,6 +22,7 @@
 		
 		<!-- 使用筛选组件 -->
 		  <FilterModal
+			ref="filterModal"
 			:initialPeople="filter.people"
 			:initialScene="filter.scene"
 			@filter-applied="handleFilterApplied"

@@ -45,10 +45,7 @@ const _sfc_main = {
     goToHistory() {
       common_vendor.index.navigateTo({
         url: "/pages/history/history",
-        animationType: "slide-in-bottom",
-        success: () => {
-          common_vendor.index.hideTabBar();
-        }
+        animationType: "slide-in-bottom"
       });
     }
   }

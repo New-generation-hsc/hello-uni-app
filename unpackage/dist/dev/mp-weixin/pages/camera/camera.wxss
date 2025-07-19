@@ -39,6 +39,33 @@
   height: 100%;
   z-index: 1;
 }
+.countdown.data-v-7b8d50ad {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.countdown .countdown-number.data-v-7b8d50ad {
+  color: white;
+  font-size: 120rpx;
+  font-weight: bold;
+  text-shadow: 0 0 20rpx rgba(0, 0, 0, 0.8);
+  animation: countdownPulse-7b8d50ad 1s ease-in-out;
+}
+@keyframes countdownPulse-7b8d50ad {
+0% {
+    transform: scale(0.5);
+    opacity: 0;
+}
+50% {
+    transform: scale(1.2);
+    opacity: 1;
+}
+100% {
+    transform: scale(1);
+    opacity: 1;
+}
+}
 .pose-reference.data-v-7b8d50ad {
   position: absolute;
   top: 50%;
@@ -88,13 +115,95 @@
   border-top: 1rpx solid rgba(255, 255, 255, 0.1);
   padding: 40rpx 0;
 }
-
+.pose-tip.data-v-7b8d50ad {
+  position: absolute;
+  bottom: 150rpx;
+  left: 80rpx;
+  z-index: 200;
+  animation: tipFadeIn-7b8d50ad 0.3s ease-out;
+}
+.pose-tip.fade-out.data-v-7b8d50ad {
+  animation: tipFadeOut-7b8d50ad 0.3s ease-out;
+}
+.pose-tip .tip-content.data-v-7b8d50ad {
+  background: white;
+  color: black;
+  padding: 10rpx 15rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  -webkit-backdrop-filter: blur(10rpx);
+          backdrop-filter: blur(10rpx);
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.3);
+}
+.pose-tip .tip-content .tip-icon.data-v-7b8d50ad {
+  font-size: 24rpx;
+  animation: pointDown-7b8d50ad 1s ease-in-out infinite;
+}
+.pose-tip .tip-content .tip-text.data-v-7b8d50ad {
+  white-space: nowrap;
+}
+.pose-tip .tip-arrow.data-v-7b8d50ad {
+  width: 0;
+  height: 0;
+  border-left: 15rpx solid transparent;
+  border-right: 15rpx solid transparent;
+  border-top: 20rpx solid rgba(0, 0, 0, 0.8);
+  margin: 0 auto;
+  position: relative;
+}
+.pose-tip .tip-arrow.data-v-7b8d50ad::before {
+  content: "";
+  position: absolute;
+  top: -22rpx;
+  left: -16rpx;
+  width: 0;
+  height: 0;
+  border-left: 16rpx solid transparent;
+  border-right: 16rpx solid transparent;
+  border-top: 22rpx solid white;
+}
+@keyframes tipFadeIn-7b8d50ad {
+0% {
+    opacity: 0;
+    transform: translateY(20rpx);
+}
+100% {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+@keyframes tipFadeOut-7b8d50ad {
+0% {
+    opacity: 1;
+    transform: translateY(0);
+}
+100% {
+    opacity: 0;
+    transform: translateY(-20rpx);
+}
+}
+@keyframes pointDown-7b8d50ad {
+0% {
+    transform: translateY(-5px);
+}
+50% {
+    transform: translateY(5rpx);
+}
+100% {
+    transform: translateY(-5px);
+}
+}
 /* 操作项容器 */
 .action-items.data-v-7b8d50ad {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 0 60rpx;
+  gap: 70rpx;
 }
 
 /* 每个操作项的通用样式 */
@@ -111,7 +220,7 @@
   height: 80rpx;
   border-radius: 16rpx;
   overflow: hidden;
-  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  border: 3rpx solid rgba(255, 255, 255, 0.8);
 }
 .album-preview .preview-image.data-v-7b8d50ad {
   width: 100%;
@@ -141,12 +250,30 @@
   background: #ffffff;
   border: 4rpx solid rgba(255, 255, 255, 0.6);
   transition: all 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .shutter-button:active .shutter-circle.data-v-7b8d50ad {
   transform: scale(0.95);
   opacity: 0.8;
 }
-
+.shutter-circle .loading.data-v-7b8d50ad {
+  width: 40rpx;
+  height: 40rpx;
+  border: 4rpx solid #ccc;
+  border-top: 4rpx solid #333;
+  border-radius: 50%;
+  animation: spin-7b8d50ad 1s linear infinite;
+}
+@keyframes spin-7b8d50ad {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+}
 /* 切换摄像头按钮 */
 .switch-camera.data-v-7b8d50ad {
   width: 80rpx;

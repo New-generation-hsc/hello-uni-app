@@ -162,7 +162,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         h: index
       };
     }),
-    h: common_assets._imports_1$2
+    h: common_assets._imports_1$3
   } : {}, {
     i: $data.activeTab === 1
   }, $data.activeTab === 1 ? {
@@ -192,7 +192,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         i: index
       };
     }),
-    m: common_assets._imports_2
+    m: common_assets._imports_2$1
   } : {});
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-027feebf"]]);

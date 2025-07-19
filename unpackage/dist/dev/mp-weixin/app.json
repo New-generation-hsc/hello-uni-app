@@ -32,7 +32,7 @@
         "pagePath": "pages/category/category",
         "iconPath": "/static/category_inactive.png",
         "selectedIconPath": "/static/category_active.png",
-        "text": "灵感快门"
+        "text": "百宝袋"
       },
       {
         "pagePath": "pages/user/user",

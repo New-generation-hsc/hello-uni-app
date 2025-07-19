@@ -290,3 +290,222 @@
   height: 40rpx;
   filter: brightness(200%);
 }
+.settings-modal.data-v-7b8d50ad {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  animation: modalFadeIn 0.3s ease-out;
+}
+.settings-modal .settings-content.data-v-7b8d50ad {
+  background: white;
+  border-radius: 40rpx 40rpx 0 0;
+  width: 100%;
+  /* 修改：使用具体的高度而不是max-height */
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  animation: modalSlideUp 0.3s ease-out;
+  /* 确保不会超出屏幕 */
+  overflow: hidden;
+}
+.settings-modal .settings-content .settings-header.data-v-7b8d50ad {
+  /* 固定高度 */
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  /* 防止收缩 */
+  flex-shrink: 0;
+}
+.settings-modal .settings-content .settings-header .settings-title.data-v-7b8d50ad {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+.settings-modal .settings-content .settings-header .close-btn.data-v-7b8d50ad {
+  font-size: 40rpx;
+  color: #999;
+  padding: 10rpx;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings-modal .settings-content .settings-body.data-v-7b8d50ad {
+  /* 关键修改：明确设置高度和滚动属性 */
+  flex: 1;
+  height: 0;
+  /* 重要：让 flex 子元素正确计算高度 */
+  padding: 0;
+  /* 确保滚动区域的样式 */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  /* iOS 平滑滚动 */
+}
+.settings-modal .settings-content .settings-body .setting-item.data-v-7b8d50ad {
+  padding: 40rpx 30rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.settings-modal .settings-content .settings-body .setting-item.data-v-7b8d50ad:last-child {
+  border-bottom: none;
+}
+.settings-modal .settings-content .settings-body .setting-item .setting-label.data-v-7b8d50ad {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+.settings-modal .settings-content .settings-body .setting-item .setting-label .label-text.data-v-7b8d50ad {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 500;
+}
+.settings-modal .settings-content .settings-body .setting-item .setting-label .label-value.data-v-7b8d50ad {
+  font-size: 28rpx;
+  color: #007AFF;
+  font-weight: bold;
+}
+.settings-modal .settings-content .settings-body .setting-item .slider-container.data-v-7b8d50ad {
+  padding: 3rpx 0;
+}
+.settings-modal .settings-content .settings-body .setting-item .slider-container .opacity-slider.data-v-7b8d50ad {
+  width: 90%;
+}
+.settings-modal .settings-content .settings-body .setting-item .countdown-options.data-v-7b8d50ad {
+  display: flex;
+  gap: 20rpx;
+  justify-content: space-between;
+}
+.settings-modal .settings-content .settings-body .setting-item .countdown-options .countdown-option.data-v-7b8d50ad {
+  padding: 10rpx 30rpx;
+  background: #f8f9fa;
+  border-radius: 15rpx;
+  font-size: 28rpx;
+  color: #666;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+}
+.settings-modal .settings-content .settings-body .setting-item .countdown-options .countdown-option.active.data-v-7b8d50ad {
+  background: #007AFF;
+  color: white;
+  border-color: #007AFF;
+}
+.settings-modal .settings-content .settings-body .setting-item .countdown-options .countdown-option.data-v-7b8d50ad:active {
+  transform: scale(0.95);
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes.data-v-7b8d50ad {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rpx;
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode.data-v-7b8d50ad {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 30rpx;
+  background: #f8f9fa;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode.active.data-v-7b8d50ad {
+  background: #e3f2fd;
+  border-color: #007AFF;
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode.data-v-7b8d50ad:active {
+  transform: scale(0.98);
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode .mode-icon.data-v-7b8d50ad {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode .mode-info.data-v-7b8d50ad {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode .mode-info .mode-title.data-v-7b8d50ad {
+  display: block;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+.settings-modal .settings-content .settings-body .setting-item .display-modes .display-mode .mode-desc.data-v-7b8d50ad {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.4;
+}
+.settings-modal .settings-content .settings-body .setting-item .switch-options .switch-option.data-v-7b8d50ad {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25rpx 0;
+}
+.settings-modal .settings-content .settings-body .setting-item .switch-options .switch-option.data-v-7b8d50ad:not(:last-child) {
+  border-bottom: 1rpx solid #f0f0f0;
+}
+.settings-modal .settings-content .settings-body .setting-item .switch-options .switch-option .switch-label.data-v-7b8d50ad {
+  font-size: 30rpx;
+  color: #333;
+}
+.settings-modal .settings-content .settings-footer.data-v-7b8d50ad {
+  /* 固定高度 */
+  display: flex;
+  gap: 20rpx;
+  padding: 0 30rpx;
+  /* 防止收缩 */
+  flex-shrink: 0;
+  background: white;
+  text-align: center;
+}
+.settings-modal .settings-content .settings-footer .reset-btn.data-v-7b8d50ad,
+.settings-modal .settings-content .settings-footer .save-btn.data-v-7b8d50ad {
+  flex: 1;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  border: none;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.settings-modal .settings-content .settings-footer .reset-btn.data-v-7b8d50ad:active,
+.settings-modal .settings-content .settings-footer .save-btn.data-v-7b8d50ad:active {
+  transform: scale(0.98);
+}
+.settings-modal .settings-content .settings-footer .reset-btn.data-v-7b8d50ad {
+  background: #f5f5f5;
+  color: #666;
+}
+.settings-modal .settings-content .settings-footer .save-btn.data-v-7b8d50ad {
+  background: #007AFF;
+  color: white;
+}
+
+/* 添加滚动条样式（仅在支持的浏览器中生效） */
+.settings-body.data-v-7b8d50ad::-webkit-scrollbar {
+  width: 6rpx;
+}
+.settings-body.data-v-7b8d50ad::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3rpx;
+}
+.settings-body.data-v-7b8d50ad::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.scroll-bottom-padding.data-v-7b8d50ad {
+  height: 40rpx;
+}

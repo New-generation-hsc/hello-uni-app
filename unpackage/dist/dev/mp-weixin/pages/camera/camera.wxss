@@ -88,7 +88,8 @@
   padding: 0 10rpx;
   z-index: 3;
 }
-.nav-left.data-v-7b8d50ad, .nav-right.data-v-7b8d50ad {
+.nav-left.data-v-7b8d50ad,
+.nav-right.data-v-7b8d50ad {
   width: 60rpx;
   height: 60rpx;
   display: flex;

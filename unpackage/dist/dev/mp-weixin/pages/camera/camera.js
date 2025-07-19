@@ -65,7 +65,7 @@ const _sfc_main = {
           this.playShutterSound();
         },
         fail: (err) => {
-          common_vendor.index.__f__("log", "at pages/camera/camera.vue:135", "拍照失败:", err);
+          common_vendor.index.__f__("log", "at pages/camera/camera.vue:126", "拍照失败:", err);
           this.isCapturing = false;
           common_vendor.index.showToast({
             title: "拍照失败",

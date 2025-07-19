@@ -55,8 +55,8 @@ const _sfc_main = {
   },
   methods: {
     viewRecordDetail(record) {
-      common_vendor.index.__f__("log", "at pages/checkin/checkin.vue:134", "width: ", systemInfo.windowHeight);
-      common_vendor.index.__f__("log", "at pages/checkin/checkin.vue:135", "content: ", this.dynamicHeight);
+      common_vendor.index.__f__("log", "at pages/checkin/checkin.vue:118", "width: ", systemInfo.windowHeight);
+      common_vendor.index.__f__("log", "at pages/checkin/checkin.vue:119", "content: ", this.dynamicHeight);
       common_vendor.index.navigateTo({
         url: "/pages/detail/detail"
       });

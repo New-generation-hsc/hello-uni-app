@@ -6,30 +6,26 @@ const _sfc_main = {
       historyGroups: [
         {
           date: "2024/01/20",
-          items: [
-            {
-              images: [
-                "/static/girl-pose-01.png",
-                "/static/girl-pose-02.png",
-                "/static/girl-pose-03.png",
-                "/static/girl-pose-01.png"
-              ]
-            }
-          ],
+          items: [{
+            images: [
+              "/static/girl-pose-01.png",
+              "/static/girl-pose-02.png",
+              "/static/girl-pose-03.png",
+              "/static/girl-pose-01.png"
+            ]
+          }],
           expanded: true
         },
         {
           date: "2024/01/19",
-          items: [
-            {
-              images: [
-                "/static/girl-pose-01.png",
-                "/static/girl-pose-02.png",
-                "/static/girl-pose-03.png",
-                "/static/girl-pose-01.png"
-              ]
-            }
-          ],
+          items: [{
+            images: [
+              "/static/girl-pose-01.png",
+              "/static/girl-pose-02.png",
+              "/static/girl-pose-03.png",
+              "/static/girl-pose-01.png"
+            ]
+          }],
           expanded: true
         }
       ]

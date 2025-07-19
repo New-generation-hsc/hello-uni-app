@@ -11,11 +11,26 @@ const currentPose = {
   tags: ["女性", "比耶", "可爱", "日常"]
 };
 const checkPhotos = [
-  { id: 1, photo: "/static/girl-pose-01.png" },
-  { id: 2, photo: "/static/girl-pose-02.png" },
-  { id: 3, photo: "/static/girl-pose-03.png" },
-  { id: 4, photo: "/static/girl-pose-01.png" },
-  { id: 5, photo: "/static/girl-pose-02.png" }
+  {
+    id: 1,
+    photo: "/static/girl-pose-01.png"
+  },
+  {
+    id: 2,
+    photo: "/static/girl-pose-02.png"
+  },
+  {
+    id: 3,
+    photo: "/static/girl-pose-03.png"
+  },
+  {
+    id: 4,
+    photo: "/static/girl-pose-01.png"
+  },
+  {
+    id: 5,
+    photo: "/static/girl-pose-02.png"
+  }
 ];
 const _sfc_main = {
   data() {

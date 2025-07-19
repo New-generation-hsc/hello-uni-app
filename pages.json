@@ -7,60 +7,52 @@
 			}
 		},
 		{
-			"path" : "pages/user/user",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/category/category",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/category/category",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/detail/detail",
-			"style" : 
-			{
-				"navigationBarTitleText" : ""
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationBarTitleText": ""
 			}
 		},
 		{
-			"path" : "pages/camera/camera",
-			"style" : 
-			{
-				"navigationBarTitleText" : "",
+			"path": "pages/camera/camera",
+			"style": {
+				"navigationBarTitleText": "",
 				"navigationStyle": "custom"
 			}
 		},
 		{
-			"path" : "pages/favorites/favorites",
-			"style" : 
-			{
-				"navigationBarTitleText" : "喜欢姿势"
+			"path": "pages/favorites/favorites",
+			"style": {
+				"navigationBarTitleText": "喜欢姿势"
 			}
 		},
 		{
-			"path" : "pages/checkin/checkin",
-			"style" : 
-			{
-				"navigationBarTitleText" : "打卡记录"
+			"path": "pages/checkin/checkin",
+			"style": {
+				"navigationBarTitleText": "打卡记录"
 			}
 		},
 		{
-			"path" : "pages/tasks/tasks",
-			"style" : 
-			{
-				"navigationBarTitleText" : "任务中心"
+			"path": "pages/tasks/tasks",
+			"style": {
+				"navigationBarTitleText": "任务中心"
 			}
 		},
 		{
-			"path" : "pages/history/history",
-			"style" : 
-			{
-				"navigationBarTitleText" : "历史推荐姿势"
+			"path": "pages/history/history",
+			"style": {
+				"navigationBarTitleText": "历史推荐姿势"
 			}
 		}
 	],
@@ -69,25 +61,24 @@
 		"selectedColor": "#3cc51f",
 		"backgroundColor": "#fff",
 		"borderStyle": "white",
-		"list": [
-		  {
-			"pagePath": "pages/index/index",
-			"iconPath": "/static/inspire_inactive.png",
-			"selectedIconPath": "/static/inspire_active.png",
-			"text": "灵感快门"
-		  },
-		  {
-			"pagePath": "pages/category/category",
-			"iconPath": "/static/category_inactive.png",
-			"selectedIconPath": "/static/category_active.png",
-			"text": "灵感快门"
-		  },
-		  {
-			"pagePath": "pages/user/user",
-			"iconPath": "/static/profile-inactive.png",
-			"selectedIconPath": "/static/profile-active.png",
-			"text": "我的影集"
-		  }
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "/static/inspire_inactive.png",
+				"selectedIconPath": "/static/inspire_active.png",
+				"text": "灵感快门"
+			},
+			{
+				"pagePath": "pages/category/category",
+				"iconPath": "/static/category_inactive.png",
+				"selectedIconPath": "/static/category_active.png",
+				"text": "灵感快门"
+			},
+			{
+				"pagePath": "pages/user/user",
+				"iconPath": "/static/profile-inactive.png",
+				"selectedIconPath": "/static/profile-active.png",
+				"text": "我的影集"
+			}
 		]
 	},
 	"globalStyle": {

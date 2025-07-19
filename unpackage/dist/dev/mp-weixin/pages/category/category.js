@@ -107,7 +107,7 @@ const _sfc_main = {
     // 处理筛选结果
     handleFilterApplied(filter) {
       this.filter = filter;
-      common_vendor.index.__f__("log", "at pages/category/category.vue:144", "应用筛选条件:", filter);
+      common_vendor.index.__f__("log", "at pages/category/category.vue:140", "应用筛选条件:", filter);
       common_vendor.index.showToast({
         title: "筛选条件已应用",
         icon: "success"

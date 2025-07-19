@@ -8,9 +8,21 @@ const userInfo = {
   // 默认用户名
 };
 const menuItems = [
-  { name: "我的喜欢", icon: "/static/heart.png", path: "/pages/favorites/favorites" },
-  { name: "我的打卡", icon: "/static/camera.png", path: "/pages/checkin/checkin" },
-  { name: "任务中心", icon: "/static/menu.png", path: "/pages/tasks/tasks" }
+  {
+    name: "我的喜欢",
+    icon: "/static/heart.png",
+    path: "/pages/favorites/favorites"
+  },
+  {
+    name: "我的打卡",
+    icon: "/static/camera.png",
+    path: "/pages/checkin/checkin"
+  },
+  {
+    name: "任务中心",
+    icon: "/static/menu.png",
+    path: "/pages/tasks/tasks"
+  }
 ];
 const userStats = {
   points: "2,450",
@@ -28,12 +40,12 @@ const _sfc_main = {
   methods: {
     navigateTo(path) {
       if (path == "/pages/feedback/feedback") {
-        common_vendor.index.__f__("log", "at pages/user/user.vue:77", "weixin-mp platform");
+        common_vendor.index.__f__("log", "at pages/user/user.vue:88", "weixin-mp platform");
         common_vendor.wx$1.openFeedBackButton({
           type: "default"
         });
       } else {
-        common_vendor.index.__f__("log", "at pages/user/user.vue:83", "current jump path: ", path);
+        common_vendor.index.__f__("log", "at pages/user/user.vue:94", "current jump path: ", path);
         common_vendor.index.navigateTo({
           url: path
         });

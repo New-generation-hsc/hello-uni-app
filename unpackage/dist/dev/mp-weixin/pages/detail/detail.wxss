@@ -1,141 +1,140 @@
 
-	
-/* 整体布局 */
+	/* 整体布局 */
 .detail-container {
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  min-height: 100vh;
-  position: relative;
-  padding-bottom: 60rpx;
+		display: flex;
+		flex-direction: column;
+		background-color: #ffffff;
+		min-height: 100vh;
+		position: relative;
+		padding-bottom: 60rpx;
 }
 
-/* 轮播图容器 (新增) */
+	/* 轮播图容器 (新增) */
 .swiper-container {
-  height: 550rpx;
-  position: relative;
+		height: 550rpx;
+		position: relative;
 }
 .pose-swiper {
-  height: 100%;
-  width: 100%;
+		height: 100%;
+		width: 100%;
 }
 .model-photo {
-  width: 100%;
-  height: 100%;
+		width: 100%;
+		height: 100%;
 }
 
-/* 轮播指示器 (三个点) */
+	/* 轮播指示器 (三个点) */
 .swiper-indicators {
-  position: absolute;
-  bottom: 20rpx;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16rpx;
+		position: absolute;
+		bottom: 20rpx;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 16rpx;
 }
 .indicator {
-  width: 16rpx;
-  height: 16rpx;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.7);
+		width: 16rpx;
+		height: 16rpx;
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.7);
 }
 .indicator.active {
-    background-color: #333;
-    transform: scale(1.2);
+		background-color: #333;
+		transform: scale(1.2);
 }
 
-/* 姿势详情 */
+	/* 姿势详情 */
 .pose-detail {
-  padding: 30rpx;
+		padding: 30rpx;
 }
 .pose-title {
-  display: block;
-  font-size: 42rpx;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20rpx;
+		display: block;
+		font-size: 42rpx;
+		font-weight: bold;
+		color: #333;
+		margin-bottom: 20rpx;
 }
 .pose-description {
-  display: block;
-  font-size: 34rpx;
-  color: #666;
-  line-height: 1.6;
-  margin-bottom: 40rpx;
+		display: block;
+		font-size: 34rpx;
+		color: #666;
+		line-height: 1.6;
+		margin-bottom: 40rpx;
 }
 
-/* 标签区域 */
+	/* 标签区域 */
 .tags-container {
-  margin-bottom: 50rpx;
+		margin-bottom: 50rpx;
 }
 .section-title {
-  font-size: 36rpx;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 25rpx;
-  display: block;
+		font-size: 36rpx;
+		font-weight: 600;
+		color: #333;
+		margin-bottom: 25rpx;
+		display: block;
 }
 .tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20rpx;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20rpx;
 }
 .tag {
-  background-color: #f0f0f0;
-  border-radius: 40rpx;
-  padding: 12rpx 30rpx;
-  font-size: 30rpx;
-  color: #555;
+		background-color: #f0f0f0;
+		border-radius: 40rpx;
+		padding: 12rpx 30rpx;
+		font-size: 30rpx;
+		color: #555;
 }
 
-/* 用户打卡区域 */
+	/* 用户打卡区域 */
 .user-checks {
-  padding: 0 30rpx;
+		padding: 0 30rpx;
 }
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 25rpx;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 25rpx;
 }
 
-/* 打卡网格 */
+	/* 打卡网格 */
 .check-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25rpx;
-  padding-bottom: 150rpx;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 25rpx;
+		padding-bottom: 150rpx;
 }
 .check-item {
-  position: relative;
-  border-radius: 20rpx;
-  overflow: hidden;
-  box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.08);
+		position: relative;
+		border-radius: 20rpx;
+		overflow: hidden;
+		box-shadow: 0 4rpx 15rpx rgba(0, 0, 0, 0.08);
 }
 .check-photo {
-  width: 100%;
-  height: 220rpx;
+		width: 100%;
+		height: 220rpx;
 }
 
-/* 底部打卡按钮 */
+	/* 底部打卡按钮 */
 .check-btn-container {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 20rpx 40rpx;
-  background-color: #fff;
-  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
-  padding-bottom: calc(20rpx + constant(safe-area-inset-bottom));
-  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 20rpx 40rpx;
+		background-color: #fff;
+		box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+		padding-bottom: calc(20rpx + constant(safe-area-inset-bottom));
+		padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
 }
 .check-btn {
-  background-color: #07c160;
-  color: #fff;
-  height: 90rpx;
-  border-radius: 45rpx;
-  font-size: 36rpx;
-  line-height: 90rpx;
-  text-align: center;
+		background-color: #07c160;
+		color: #fff;
+		height: 90rpx;
+		border-radius: 45rpx;
+		font-size: 36rpx;
+		line-height: 90rpx;
+		text-align: center;
 }

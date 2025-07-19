@@ -113,7 +113,9 @@
 .tab-item.active.data-v-027feebf {
   background-color: #9333EA;
 }
-.tab-item.active .tab-daily.data-v-027feebf, .tab-item.active .tab-growth.data-v-027feebf, .tab-item.active .tab-time-limit.data-v-027feebf {
+.tab-item.active .tab-daily.data-v-027feebf,
+.tab-item.active .tab-growth.data-v-027feebf,
+.tab-item.active .tab-time-limit.data-v-027feebf {
   font-weight: 600;
   color: #fff;
 }
@@ -166,7 +168,9 @@
   align-items: center;
   margin-bottom: 8rpx;
 }
-.daily-icon.data-v-027feebf, .growth-icon.data-v-027feebf, .time-icon.data-v-027feebf {
+.daily-icon.data-v-027feebf,
+.growth-icon.data-v-027feebf,
+.time-icon.data-v-027feebf {
   width: 60rpx;
   height: 60rpx;
   border-radius: 50%;

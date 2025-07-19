@@ -13,9 +13,21 @@ const _sfc_main = {
       activeTab: 0,
       // 默认选择每日任务
       tabs: [
-        { id: 0, label: "每日任务", type: "daily" },
-        { id: 1, label: "成长任务", type: "growth" },
-        { id: 2, label: "限时任务", type: "time-limit" }
+        {
+          id: 0,
+          label: "每日任务",
+          type: "daily"
+        },
+        {
+          id: 1,
+          label: "成长任务",
+          type: "growth"
+        },
+        {
+          id: 2,
+          label: "限时任务",
+          type: "time-limit"
+        }
       ],
       // 每日任务数据
       dailyTasks: [
@@ -103,11 +115,35 @@ const _sfc_main = {
       ],
       tasks: [
         // 示例数据 - 实际应用中从API获取
-        { id: 1, name: "连续打卡7天", completed: 5, total: 7, reward: 100 },
-        { id: 2, name: "收藏50个姿势", completed: 28, total: 50, reward: 200 },
+        {
+          id: 1,
+          name: "连续打卡7天",
+          completed: 5,
+          total: 7,
+          reward: 100
+        },
+        {
+          id: 2,
+          name: "收藏50个姿势",
+          completed: 28,
+          total: 50,
+          reward: 200
+        },
         // 可以添加更多任务
-        { id: 3, name: "练习30个动作", completed: 18, total: 30, reward: 150 },
-        { id: 4, name: "累计训练20小时", completed: 8, total: 20, reward: 300 }
+        {
+          id: 3,
+          name: "练习30个动作",
+          completed: 18,
+          total: 30,
+          reward: 150
+        },
+        {
+          id: 4,
+          name: "累计训练20小时",
+          completed: 8,
+          total: 20,
+          reward: 300
+        }
       ]
     };
   },

@@ -8,7 +8,8 @@
     "pages/favorites/favorites",
     "pages/checkin/checkin",
     "pages/tasks/tasks",
-    "pages/history/history"
+    "pages/history/history",
+    "pages/pose-preview/pose-preview"
   ],
   "window": {
     "navigationBarTextStyle": "black",

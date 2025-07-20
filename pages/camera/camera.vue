@@ -305,6 +305,10 @@
 
                         // 播放拍照音效
                         this.playShutterSound();
+                        uni.navigateTo({
+                            url: '/pages/pose-preview/pose-preview?originalImage=' + this
+                                .capturedImage + '&referenceImage=/static/girl-pose-03.png'
+                        });
                     },
                     fail: (err) => {
                         console.log('拍照失败:', err);

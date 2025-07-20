@@ -125,9 +125,12 @@ const _sfc_main = {
           this.capturedImage = res.tempImagePath;
           this.isCapturing = false;
           this.playShutterSound();
+          common_vendor.index.navigateTo({
+            url: "/pages/pose-preview/pose-preview?originalImage=" + this.capturedImage + "&referenceImage=/static/girl-pose-03.png"
+          });
         },
         fail: (err) => {
-          common_vendor.index.__f__("log", "at pages/camera/camera.vue:310", "拍照失败:", err);
+          common_vendor.index.__f__("log", "at pages/camera/camera.vue:314", "拍照失败:", err);
           this.isCapturing = false;
           common_vendor.index.showToast({
             title: "拍照失败",
@@ -258,10 +261,10 @@ const _sfc_main = {
       }
     },
     onScrollToUpper() {
-      common_vendor.index.__f__("log", "at pages/camera/camera.vue:469", "滚动到顶部");
+      common_vendor.index.__f__("log", "at pages/camera/camera.vue:473", "滚动到顶部");
     },
     onScrollToLower() {
-      common_vendor.index.__f__("log", "at pages/camera/camera.vue:474", "滚动到底部");
+      common_vendor.index.__f__("log", "at pages/camera/camera.vue:478", "滚动到底部");
     },
     // 新增的设置方法
     onSaveOriginalChange(e) {

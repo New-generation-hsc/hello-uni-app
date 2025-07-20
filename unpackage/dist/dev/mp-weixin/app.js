@@ -11,6 +11,7 @@ if (!Math) {
   "./pages/checkin/checkin.js";
   "./pages/tasks/tasks.js";
   "./pages/history/history.js";
+  "./pages/pose-preview/pose-preview.js";
 }
 const _sfc_main = {
   onLaunch: function() {

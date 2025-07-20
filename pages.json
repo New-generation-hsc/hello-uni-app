@@ -54,6 +54,14 @@
 			"style": {
 				"navigationBarTitleText": "历史推荐姿势"
 			}
+		},
+		{
+			"path": "pages/pose-preview/pose-preview",
+			"style": {
+				"navigationBarTitleText": "姿势预览",
+				"navigationBarBackgroundColor": "#000",
+				"navigationBarTextStyle": "white"
+			}
 		}
 	],
 	"tabBar": {

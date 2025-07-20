@@ -16,7 +16,10 @@ const _sfc_main = {
       tipTimer: null,
       // 提示框定时器,
       showSettingsModal: false,
+      // 滚动相关
       scrollTop: 0,
+      isScrolling: false,
+      scrollTimer: null,
       // 设置相关
       settings: {
         opacity: 0.3,
@@ -29,13 +32,32 @@ const _sfc_main = {
         // 震动反馈
         shutterSound: true,
         // 快门音效
-        autoCapture: false,
-        // 自动拍照
-        // 新增设置项
-        saveOriginal: true,
-        addWatermark: false,
         showGrid: false,
-        imageQuality: "high"
+        // 当前选中的参考线类型
+        selectedOption: "grid",
+        // 所有参考线选项
+        options: [
+          {
+            value: "grid",
+            label: "九宫格参考线"
+          },
+          {
+            value: "golden",
+            label: "黄金分割线"
+          },
+          {
+            value: "spiral",
+            label: "黄金螺旋线"
+          },
+          {
+            value: "diagonal",
+            label: "对角线参考线"
+          },
+          {
+            value: "thirds",
+            label: "三分法参考线"
+          }
+        ]
       },
       // 倒计时选项
       countdownOptions: [0, 1, 3, 5, 10],
@@ -48,25 +70,7 @@ const _sfc_main = {
       dragStartPos: {
         x: 0,
         y: 0
-      },
-      // 图片质量选项
-      imageQualityOptions: [
-        {
-          value: "low",
-          label: "低质量",
-          desc: "文件小，适合分享"
-        },
-        {
-          value: "normal",
-          label: "标准质量",
-          desc: "平衡文件大小和质量"
-        },
-        {
-          value: "high",
-          label: "高质量",
-          desc: "文件大，质量最佳"
-        }
-      ]
+      }
     };
   },
   // 添加 onReady 生命周期
@@ -80,6 +84,12 @@ const _sfc_main = {
   // 在 onUnload 中清理定时器
   onUnload() {
     this.clearTipTimer();
+  },
+  computed: {
+    isIOS() {
+      const platform = common_vendor.index.getSystemInfoSync().platform;
+      return platform === "ios" || platform === "mac";
+    }
   },
   methods: {
     switchCamera() {
@@ -117,7 +127,7 @@ const _sfc_main = {
           this.playShutterSound();
         },
         fail: (err) => {
-          common_vendor.index.__f__("log", "at pages/camera/camera.vue:274", "拍照失败:", err);
+          common_vendor.index.__f__("log", "at pages/camera/camera.vue:310", "拍照失败:", err);
           this.isCapturing = false;
           common_vendor.index.showToast({
             title: "拍照失败",
@@ -233,9 +243,25 @@ const _sfc_main = {
         y: 200
       };
     },
-    // 滚动事件
+    // 滚动相关方法 - 优化
     onScroll(e) {
-      this.scrollTop = e.detail.scrollTop;
+      if (this.scrollTimer) {
+        clearTimeout(this.scrollTimer);
+      }
+      this.isScrolling = true;
+      this.scrollTimer = setTimeout(() => {
+        this.isScrolling = false;
+      }, 150);
+      const newScrollTop = e.detail.scrollTop;
+      if (Math.abs(newScrollTop - this.scrollTop) > 5) {
+        this.scrollTop = newScrollTop;
+      }
+    },
+    onScrollToUpper() {
+      common_vendor.index.__f__("log", "at pages/camera/camera.vue:469", "滚动到顶部");
+    },
+    onScrollToLower() {
+      common_vendor.index.__f__("log", "at pages/camera/camera.vue:474", "滚动到底部");
     },
     // 新增的设置方法
     onSaveOriginalChange(e) {
@@ -246,12 +272,22 @@ const _sfc_main = {
     },
     onGridChange(e) {
       this.settings.showGrid = e.detail.value;
+      if (this.settings.showGrid && !this.settings.selectedOption) {
+        this.settings.selectedOption = "grid";
+      }
     },
-    setImageQuality(quality) {
-      this.settings.imageQuality = quality;
+    // 选择参考线类型
+    selectOption(value) {
+      if (!this.settings.showGrid)
+        return;
+      this.settings.selectedOption = value;
     }
   }
 };
+if (!Array) {
+  const _component_transition = common_vendor.resolveComponent("transition");
+  _component_transition();
+}
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return common_vendor.e({
     a: $data.showCamera
@@ -279,7 +315,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
     p: common_assets._imports_2,
     q: common_vendor.o((...args) => $options.switchCamera && $options.switchCamera(...args)),
     r: $data.showSettingsModal
-  }, $data.showSettingsModal ? {
+  }, $data.showSettingsModal ? common_vendor.e({
     s: common_vendor.o((...args) => $options.closeSettings && $options.closeSettings(...args)),
     t: common_vendor.t(Math.round($data.settings.opacity * 100)),
     v: $data.settings.opacity * 100,
@@ -294,24 +330,42 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
         d: common_vendor.o(($event) => $options.setCountdownDuration(duration), duration)
       };
     }),
-    A: $data.settings.displayMode === "background" ? 1 : "",
-    B: common_vendor.o(($event) => $options.setDisplayMode("background")),
-    C: $data.settings.displayMode === "float" ? 1 : "",
-    D: common_vendor.o(($event) => $options.setDisplayMode("float")),
-    E: $data.settings.vibration,
-    F: common_vendor.o((...args) => $options.onVibrationChange && $options.onVibrationChange(...args)),
-    G: $data.settings.shutterSound,
-    H: common_vendor.o((...args) => $options.onShutterSoundChange && $options.onShutterSoundChange(...args)),
-    I: $data.settings.showGrid,
-    J: common_vendor.o((...args) => $options.onGridChange && $options.onGridChange(...args)),
-    K: common_vendor.o((...args) => $options.resetSettings && $options.resetSettings(...args)),
-    L: common_vendor.o((...args) => $options.saveSettings && $options.saveSettings(...args)),
-    M: $data.scrollTop,
-    N: common_vendor.o((...args) => $options.onScroll && $options.onScroll(...args)),
-    O: common_vendor.o(() => {
+    A: $data.settings.displayMode === "background" ? "/static/background-active.png" : "/static/background.png",
+    B: $data.settings.displayMode === "background" ? 1 : "",
+    C: common_vendor.o(($event) => $options.setDisplayMode("background")),
+    D: $data.settings.displayMode === "float" ? "/static/float-active.png" : "/static/float.png",
+    E: $data.settings.displayMode === "float" ? 1 : "",
+    F: common_vendor.o(($event) => $options.setDisplayMode("float")),
+    G: $data.settings.vibration,
+    H: common_vendor.o((...args) => $options.onVibrationChange && $options.onVibrationChange(...args)),
+    I: $data.settings.shutterSound,
+    J: common_vendor.o((...args) => $options.onShutterSoundChange && $options.onShutterSoundChange(...args)),
+    K: $data.settings.showGrid,
+    L: common_vendor.o((...args) => $options.onGridChange && $options.onGridChange(...args)),
+    M: $data.settings.showGrid
+  }, $data.settings.showGrid ? {
+    N: common_vendor.f($data.settings.options, (option, index, i0) => {
+      return {
+        a: option.value,
+        b: $data.settings.selectedOption === option.value,
+        c: common_vendor.o(($event) => $options.selectOption(option.value), index),
+        d: common_vendor.t(option.label),
+        e: index
+      };
     }),
-    P: common_vendor.o((...args) => $options.closeSettings && $options.closeSettings(...args))
-  } : {});
+    O: !$data.settings.showGrid
+  } : {}, {
+    P: common_vendor.p({
+      name: "fade"
+    }),
+    Q: common_vendor.o((...args) => $options.resetSettings && $options.resetSettings(...args)),
+    R: common_vendor.o((...args) => $options.saveSettings && $options.saveSettings(...args)),
+    S: $data.scrollTop,
+    T: common_vendor.o((...args) => $options.onScroll && $options.onScroll(...args)),
+    U: common_vendor.o(() => {
+    }),
+    V: common_vendor.o((...args) => $options.closeSettings && $options.closeSettings(...args))
+  }) : {});
 }
 const MiniProgramPage = /* @__PURE__ */ common_vendor._export_sfc(_sfc_main, [["render", _sfc_render], ["__scopeId", "data-v-7b8d50ad"]]);
 wx.createPage(MiniProgramPage);

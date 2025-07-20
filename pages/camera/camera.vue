@@ -99,7 +99,9 @@
                         <view class="display-mode" :class="{ active: settings.displayMode === 'background' }"
                             @click="setDisplayMode('background')">
                             <view class="mode-info">
-                                <view class="mode-icon">🖼️</view>
+                                <image class="mode-icon"
+                                    :src="settings.displayMode === 'background' ? '/static/background-active.png' : '/static/background.png'">
+                                </image>
                                 <text class="mode-title">背景图模式</text>
                             </view>
                             <text class="mode-desc">固定在屏幕中央作为背景</text>
@@ -108,7 +110,9 @@
                         <view class="display-mode" :class="{ active: settings.displayMode === 'float' }"
                             @click="setDisplayMode('float')">
                             <view class="mode-info">
-                                <view class="mode-icon">📱</view>
+                                <image class="mode-icon"
+                                    :src="settings.displayMode === 'float' ? '/static/float-active.png' : '/static/float.png'">
+                                </image>
                                 <text class="mode-title">浮窗模式</text>
                             </view>
                             <text class="mode-desc">可拖动调整位置的浮窗</text>
@@ -123,16 +127,34 @@
                     </view>
                     <view class="switch-options">
                         <view class="switch-option">
-                            <text class="switch-label">震动反馈</text>
-                            <switch :checked="settings.vibration" color="#007AFF" @change="onVibrationChange" />
+                            <view class="option-header">
+                                <text class="switch-label">震动反馈</text>
+                                <switch :checked="settings.vibration" color="#007AFF" @change="onVibrationChange" />
+                            </view>
                         </view>
                         <view class="switch-option">
-                            <text class="switch-label">快门音效</text>
-                            <switch :checked="settings.shutterSound" color="#007AFF" @change="onShutterSoundChange" />
+                            <view class="option-header">
+                                <text class="switch-label">快门音效</text>
+                                <switch :checked="settings.shutterSound" color="#007AFF"
+                                    @change="onShutterSoundChange" />
+                            </view>
                         </view>
                         <view class="switch-option">
-                            <text class="switch-label">网格辅助线</text>
-                            <switch :checked="settings.showGrid" color="#007AFF" @change="onGridChange" />
+                            <view class="option-header">
+                                <text class="switch-label">网格辅助线</text>
+                                <switch :checked="settings.showGrid" color="#007AFF" @change="onGridChange" />
+                            </view>
+
+                            <transition name="fade">
+                                <view class="grid-container" v-if="settings.showGrid">
+                                    <view class="option-item" v-for="(option, index) in settings.options" :key="index">
+                                        <radio class="radio" :value="option.value"
+                                            :checked="settings.selectedOption === option.value"
+                                            :disabled="!settings.showGrid" @click="selectOption(option.value)" />
+                                        <text class="option-label">{{ option.label }}</text>
+                                    </view>
+                                </view>
+                            </transition>
                         </view>
                     </view>
                 </view>
@@ -166,7 +188,11 @@
                 isTipFading: false, // 控制淡出动画
                 tipTimer: null, // 提示框定时器,
                 showSettingsModal: false,
+
+                // 滚动相关
                 scrollTop: 0,
+                isScrolling: false,
+                scrollTimer: null,
 
                 // 设置相关
                 settings: {
@@ -175,12 +201,33 @@
                     displayMode: 'background', // 显示模式: 'background' | 'float'
                     vibration: true, // 震动反馈
                     shutterSound: true, // 快门音效
-                    autoCapture: false, // 自动拍照
-                    // 新增设置项
-                    saveOriginal: true,
-                    addWatermark: false,
                     showGrid: false,
-                    imageQuality: 'high'
+
+                    // 当前选中的参考线类型
+                    selectedOption: "grid",
+
+                    // 所有参考线选项
+                    options: [{
+                            value: "grid",
+                            label: "九宫格参考线"
+                        },
+                        {
+                            value: "golden",
+                            label: "黄金分割线"
+                        },
+                        {
+                            value: "spiral",
+                            label: "黄金螺旋线"
+                        },
+                        {
+                            value: "diagonal",
+                            label: "对角线参考线"
+                        },
+                        {
+                            value: "thirds",
+                            label: "三分法参考线"
+                        }
+                    ]
                 },
 
                 // 倒计时选项
@@ -195,24 +242,7 @@
                 dragStartPos: {
                     x: 0,
                     y: 0
-                },
-                // 图片质量选项
-                imageQualityOptions: [{
-                        value: 'low',
-                        label: '低质量',
-                        desc: '文件小，适合分享'
-                    },
-                    {
-                        value: 'normal',
-                        label: '标准质量',
-                        desc: '平衡文件大小和质量'
-                    },
-                    {
-                        value: 'high',
-                        label: '高质量',
-                        desc: '文件大，质量最佳'
-                    }
-                ],
+                }
             }
         },
         // 添加 onReady 生命周期
@@ -229,6 +259,12 @@
         // 在 onUnload 中清理定时器
         onUnload() {
             this.clearTipTimer();
+        },
+        computed: {
+            isIOS() {
+                const platform = uni.getSystemInfoSync().platform;
+                return platform === 'ios' || platform === 'mac';
+            }
         },
         methods: {
             switchCamera() {
@@ -409,9 +445,33 @@
                 };
             },
 
-            // 滚动事件
+            // 滚动相关方法 - 优化
             onScroll(e) {
-                this.scrollTop = e.detail.scrollTop;
+                // 防抖处理，减少频繁更新
+                if (this.scrollTimer) {
+                    clearTimeout(this.scrollTimer);
+                }
+
+                this.isScrolling = true;
+                this.scrollTimer = setTimeout(() => {
+                    this.isScrolling = false;
+                }, 150);
+
+                // 只在必要时更新scrollTop
+                const newScrollTop = e.detail.scrollTop;
+                if (Math.abs(newScrollTop - this.scrollTop) > 5) {
+                    this.scrollTop = newScrollTop;
+                }
+            },
+
+            onScrollToUpper() {
+                // 到达顶部时的处理
+                console.log('滚动到顶部');
+            },
+
+            onScrollToLower() {
+                // 到达底部时的处理  
+                console.log('滚动到底部');
             },
 
             // 新增的设置方法
@@ -425,10 +485,16 @@
 
             onGridChange(e) {
                 this.settings.showGrid = e.detail.value;
+
+                if (this.settings.showGrid && !this.settings.selectedOption) {
+                    this.settings.selectedOption = "grid";
+                }
             },
 
-            setImageQuality(quality) {
-                this.settings.imageQuality = quality;
+            // 选择参考线类型
+            selectOption(value) {
+                if (!this.settings.showGrid) return;
+                this.settings.selectedOption = value;
             }
         }
     }
@@ -800,8 +866,6 @@
                 padding: 0;
                 /* 确保滚动区域的样式 */
                 overflow-y: auto;
-                -webkit-overflow-scrolling: touch;
-                /* iOS 平滑滚动 */
 
                 .setting-item {
                     padding: 40rpx 30rpx;
@@ -892,23 +956,24 @@
                                 transform: scale(0.98);
                             }
 
-                            .mode-icon {
-                                font-size: 40rpx;
-                                margin-right: 20rpx;
-                            }
-
                             .mode-info {
                                 flex: 1;
                                 display: flex;
                                 flex-direction: row;
-                                align-items: baseline;
+                                align-items: center;
+                                margin-bottom: 10rpx;
+
+                                .mode-icon {
+                                    height: 40rpx;
+                                    width: 40rpx;
+                                    margin-right: 20rpx;
+                                }
 
                                 .mode-title {
                                     display: block;
                                     font-size: 28rpx;
                                     color: #333;
                                     font-weight: 500;
-                                    margin-bottom: 10rpx;
                                 }
                             }
 
@@ -923,18 +988,56 @@
                     // 开关选项
                     .switch-options {
                         .switch-option {
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            padding: 25rpx 0;
-
                             &:not(:last-child) {
                                 border-bottom: 1rpx solid #f0f0f0;
                             }
 
-                            .switch-label {
+                            .option-header {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 25rpx 0;
+
+                                .switch-label {
+                                    font-size: 30rpx;
+                                    color: #333;
+                                }
+                            }
+
+                            /* 选项列表 */
+                            .option-list {
+                                padding: 0 20rpx;
+
+                                &.disabled {
+                                    .option-label {
+                                        color: #cccccc;
+                                    }
+
+                                    .radio {
+                                        opacity: 0.5;
+                                    }
+                                }
+                            }
+
+                            .option-item {
+                                display: flex;
+                                align-items: center;
+                                padding: 30rpx 0;
+                                border-bottom: 1rpx solid #f0f0f0;
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+                            }
+
+                            .radio {
+                                transform: scale(1.2);
+                                margin-right: 20rpx;
+                            }
+
+                            .option-label {
                                 font-size: 30rpx;
-                                color: #333;
+                                color: #000000;
                             }
                         }
                     }
@@ -965,6 +1068,7 @@
 
                     &:active {
                         transform: scale(0.98);
+                        box-shadow: 0 1px 4px rgba(175, 82, 222, 0.3);
                     }
                 }
 
@@ -998,5 +1102,17 @@
     // 底部填充空间
     .scroll-bottom-padding {
         height: 40rpx;
+    }
+
+    /* 定义过渡效果 */
+    .fade-enter-active,
+    .fade-leave-active {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .fade-enter,
+    .fade-leave-to {
+        opacity: 0;
+        transform: translateY(20px);
     }
 </style>

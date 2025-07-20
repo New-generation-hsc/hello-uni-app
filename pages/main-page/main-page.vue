@@ -23,7 +23,7 @@
 
                     <!-- 换一换按钮 -->
                     <view class="change-container">
-                        <view class="change-btn" :disabled="remainCount <= 0" @click="changePhoto">换一个</view>
+                        <view class="change-btn" :class="{ active : remainCount > 0}" @click="changePhoto">换一个</view>
                     </view>
 
                     <!-- 剩余次数提示 -->
@@ -33,9 +33,9 @@
                     </view>
 
                     <!-- 在姿势卡片后面添加 -->
-                    <view class="swipe-hint" @click="goToHistory">
+                    <view v-if="showSwipeHint" class="swipe-hint" :style="{ bottom: swipeHintHeight + 'px'}">
                         <image src="/static/arrow-up.png" class="arrow-icon" />
-                        <text class="hint-text">点击查看历史推荐姿势</text>
+                        <text class="hint-text">滑动查看历史推荐姿势</text>
                     </view>
                 </view>
             </swiper-item>
@@ -103,6 +103,7 @@
                 isChanging: false,
                 isLoading: false,
                 showSwipeHint: true,
+                swipeHintHeight: 110,
 
                 historyGroups: [{
                         date: '2024/01/20',
@@ -140,7 +141,21 @@
             // 页面显示时隐藏滑动提示
             setTimeout(() => {
                 this.showSwipeHint = false
-            }, 3000)
+            }, 3000);
+        },
+
+        onReady() {
+            // 1. 计算 TabBar 高度
+            const systemInfo = uni.getSystemInfoSync()
+
+            // 1. 计算基本高度（窗口与屏幕高度差）
+            let tabBarHeight = systemInfo.screenHeight - systemInfo.windowHeight
+
+            // 2. 考虑安全区域（iPhone等全面屏）
+            if (systemInfo.safeAreaInsets?.bottom > 0) {
+                tabBarHeight += systemInfo.safeAreaInsets.bottom
+            }
+            this.swipeHintHeight = tabBarHeight + 10;
         },
 
         methods: {
@@ -158,6 +173,7 @@
 
                 const HISTORY_PAGE = 1;
                 if (this.currentPage == HISTORY_PAGE) {
+                    this.showSwipeHint = false;
                     uni.setNavigationBarTitle({
                         title: "历史推荐姿势"
                     });
@@ -223,7 +239,7 @@
             toggleGroup(index) {
                 this.historyGroups[index].expanded = !this.historyGroups[index].expanded;
                 this.$forceUpdate();
-            }
+            },
         }
     }
 </script>
@@ -427,7 +443,7 @@
     .change-btn {
         width: 300rpx;
         height: 90rpx;
-        background: #6EBF7A;
+        background: #ccc;
         color: white;
         font-size: 36rpx;
         border-radius: 60rpx;
@@ -435,6 +451,15 @@
         justify-content: center;
         align-items: center;
         margin-top: 30rpx;
+    }
+
+    .change-btn.active {
+        background: #6EBF7A;
+        color: white;
+    }
+
+    .change-btn.active:active {
+        transform: scale(0.97);
     }
 
     .hint-container {
@@ -457,11 +482,11 @@
     }
 
     .swipe-hint {
+        position: absolute;
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 60rpx 0;
-        margin-top: 30rpx;
+        left: 31%;
 
         .arrow-icon {
             width: 30rpx;

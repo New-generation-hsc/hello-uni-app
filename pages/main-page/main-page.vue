@@ -33,7 +33,7 @@
                     </view>
 
                     <!-- 在姿势卡片后面添加 -->
-                    <view v-if="showSwipeHint" class="swipe-hint" :style="{ bottom: swipeHintHeight + 'px'}">
+                    <view v-if="showSwipeHint" class="swipe-hint" :style="{ bottom: swipeHintHeight + 'rpx'}">
                         <image src="/static/arrow-up.png" class="arrow-icon" />
                         <text class="hint-text">滑动查看历史推荐姿势</text>
                     </view>
@@ -103,7 +103,7 @@
                 isChanging: false,
                 isLoading: false,
                 showSwipeHint: true,
-                swipeHintHeight: 110,
+                swipeHintHeight: 80,
 
                 historyGroups: [{
                         date: '2024/01/20',
@@ -144,19 +144,7 @@
             }, 3000);
         },
 
-        onReady() {
-            // 1. 计算 TabBar 高度
-            const systemInfo = uni.getSystemInfoSync()
-
-            // 1. 计算基本高度（窗口与屏幕高度差）
-            let tabBarHeight = systemInfo.screenHeight - systemInfo.windowHeight
-
-            // 2. 考虑安全区域（iPhone等全面屏）
-            if (systemInfo.safeAreaInsets?.bottom > 0) {
-                tabBarHeight += systemInfo.safeAreaInsets.bottom
-            }
-            this.swipeHintHeight = tabBarHeight + 10;
-        },
+        onReady() {},
 
         methods: {
             // 初始化页面

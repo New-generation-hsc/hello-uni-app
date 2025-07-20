@@ -1368,7 +1368,7 @@
 
     // 触摸反馈增强
     .photo-comparison {
-        * {
+        view {
             -webkit-tap-highlight-color: transparent;
         }
 

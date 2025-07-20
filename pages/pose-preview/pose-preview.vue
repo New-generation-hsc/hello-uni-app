@@ -73,7 +73,7 @@
                         :style="overlayImageStyle" />
 
                     <!-- 混合控制器 -->
-                    <view class="blend-controls">
+                    <view class="blend-controls" v-if="showBlendControl">
                         <view class="control-item">
                             <text class="control-label">透明度</text>
                             <slider class="blend-slider" :value="blendOpacity * 100" min="0" max="100" step="1"
@@ -116,6 +116,13 @@
 
         <!-- 底部操作栏 -->
         <view class="bottom-actions">
+            <view v-if="currentTab === 'blend'" class="action-btn" @click="togglePhotoSetting">
+                <view class="btn-icon">
+                    <image src="/static/image-setting.png" class="btn-icon-img"></image>
+                </view>
+                <text class="btn-text">调整</text>
+            </view>
+
             <view class="action-btn" @click="retakePhoto">
                 <view class="btn-icon">
                     <image src="/static/retake.png" class="btn-icon-img"></image>
@@ -180,6 +187,7 @@
                 scoreText: '姿势匹配程度完美！',
                 showHelpTips: false,
                 showBlendInfo: true,
+                showBlendControl: false,
 
                 // Tab配置
                 tabs: [{
@@ -391,6 +399,7 @@
                 this.rightImageScale = 1;
                 this.rightImageTranslateX = 0;
                 this.rightImageTranslateY = 0;
+                this.showBlendControl = false;
             },
 
             // 图片点击事件
@@ -702,6 +711,10 @@
                         });
                     });
                 });
+            },
+
+            togglePhotoSetting() {
+                this.showBlendControl = !this.showBlendControl;
             }
         }
     }

@@ -120,41 +120,65 @@
                     </view>
                 </view>
 
-                <!-- 其他设置 -->
+                <!-- 参考线模式设置 -->
                 <view class="setting-item">
                     <view class="setting-label">
-                        <text class="label-text">其他选项</text>
+                        <text class="label-text">参考线选项</text>
                     </view>
-                    <view class="switch-options">
-                        <view class="switch-option">
-                            <view class="option-header">
-                                <text class="switch-label">震动反馈</text>
-                                <switch :checked="settings.vibration" color="#007AFF" @change="onVibrationChange" />
+                    <view class="display-modes grid-modes">
+                        <view class="display-mode" :class="{ active: settings.gridMode === 'none' }"
+                            @click="setGridMode('none')">
+                            <view class="mode-info">
+                                <image class="mode-icon"
+                                    :src="settings.gridMode === 'none' ? '/static/none-active.png' : '/static/none.png'">
+                                </image>
+                                <text class="mode-title">无参考线</text>
                             </view>
                         </view>
-                        <view class="switch-option">
-                            <view class="option-header">
-                                <text class="switch-label">快门音效</text>
-                                <switch :checked="settings.shutterSound" color="#007AFF"
-                                    @change="onShutterSoundChange" />
+                        <view class="display-mode" :class="{ active: settings.gridMode === 'grid-line' }"
+                            @click="setGridMode('grid-line')">
+                            <view class="mode-info">
+                                <image class="mode-icon"
+                                    :src="settings.gridMode === 'grid-line' ? '/static/grid-line-active.png' : '/static/grid-line.png'">
+                                </image>
+                                <text class="mode-title">九宫格参考线</text>
                             </view>
                         </view>
-                        <view class="switch-option">
-                            <view class="option-header">
-                                <text class="switch-label">网格辅助线</text>
-                                <switch :checked="settings.showGrid" color="#007AFF" @change="onGridChange" />
+                        <view class="display-mode" :class="{ active: settings.gridMode === 'golden-spiral' }"
+                            @click="setGridMode('golden-spiral')">
+                            <view class="mode-info">
+                                <image class="mode-icon"
+                                    :src="settings.gridMode === 'golden-spiral' ? '/static/golden-spiral-active.png' : '/static/golden-spiral.png'">
+                                </image>
+                                <text class="mode-title">黄金分割线</text>
                             </view>
-
-                            <transition name="fade">
-                                <view class="grid-container" v-if="settings.showGrid">
-                                    <view class="option-item" v-for="(option, index) in settings.options" :key="index">
-                                        <radio class="radio" :value="option.value"
-                                            :checked="settings.selectedOption === option.value"
-                                            :disabled="!settings.showGrid" @click="selectOption(option.value)" />
-                                        <text class="option-label">{{ option.label }}</text>
-                                    </view>
-                                </view>
-                            </transition>
+                        </view>
+                        <view class="display-mode" :class="{ active: settings.gridMode === 'golden-ratio' }"
+                            @click="setGridMode('golden-ratio')">
+                            <view class="mode-info">
+                                <image class="mode-icon"
+                                    :src="settings.gridMode === 'golden-ratio' ? '/static/golden-ratio-active.png' : '/static/golden-ratio.png'">
+                                </image>
+                                <text class="mode-title">黄金螺旋线</text>
+                            </view>
+                        </view>
+                        <view class="display-mode" :class="{ active: settings.gridMode === 'diagonal-lines' }"
+                            @click="setGridMode('diagonal-lines')">
+                            <view class="mode-info">
+                                <image class="mode-icon"
+                                    :src="settings.gridMode === 'diagonal-lines' ? '/static/diagonal-lines-active.png' : '/static/diagonal-lines.png'">
+                                </image>
+                                <text class="mode-title">对角线参考线</text>
+                            </view>
+                        </view>
+                        <view class="display-mode" :class="{ active: settings.gridMode === 'rule-of-thirds' }"
+                            @click="setGridMode('rule-of-thirds')">
+                            <view class="mode-info">
+                                <image class="mode-icon"
+                                    :src="settings.gridMode === 'rule-of-thirds' ? '/static/rule-of-thirds-active.png' : '/static/rule-of-thirds.png'">
+                                </image>
+                                <text class="mode-title">三分法参考线</text>
+                            </view>
                         </view>
                     </view>
                 </view>
@@ -202,6 +226,7 @@
                     vibration: true, // 震动反馈
                     shutterSound: true, // 快门音效
                     showGrid: false,
+                    gridMode: 'none',
 
                     // 当前选中的参考线类型
                     selectedOption: "grid",
@@ -392,6 +417,11 @@
                 if (mode === 'float') {
                     this.initFloatPosition();
                 }
+            },
+
+            // 显示模式设置
+            setGridMode(mode) {
+                this.settings.gridMode = mode;
             },
 
             // 开关设置
@@ -826,7 +856,7 @@
             border-radius: 40rpx 40rpx 0 0;
             width: 100%;
             /* 修改：使用具体的高度而不是max-height */
-            height: 80vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             animation: modalSlideUp 0.3s ease-out;
@@ -984,6 +1014,23 @@
                             .mode-desc {
                                 font-size: 24rpx;
                                 color: #666;
+                                line-height: 1.4;
+                            }
+                        }
+                    }
+
+                    .display-modes.grid-modes {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 20rpx;
+
+                        .display-mode {
+                            padding: 20rpx;
+
+                            .mode-title {
+                                display: block;
+                                font-size: 24rpx;
+                                color: #333;
                                 line-height: 1.4;
                             }
                         }
